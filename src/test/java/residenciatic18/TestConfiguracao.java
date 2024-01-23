@@ -102,5 +102,5 @@ public class TestConfiguracao {
     // o tamanho da senha não pode ter sido aceito
     assertNotEquals(tam, configuracao.getTamanhoSenha());
   }
-  
+
 }
