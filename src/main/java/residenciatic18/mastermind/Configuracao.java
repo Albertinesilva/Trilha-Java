@@ -1,20 +1,22 @@
 package residenciatic18.mastermind;
 
+import java.util.Arrays;
+
 public class Configuracao {
 
   private String nome;
   private String alfabeto;
   private int tamanhoSenha;
-  private int MaxTentativas;
+  private int maxTentativas;
 
   public Configuracao() {
   }
 
-  public Configuracao(String nome, String alfabeto, int tamanhoSenha) {
-    super();
+  public Configuracao(String nome, String alfabeto, int tamanhoSenha, int maxTentativas) {
     this.nome = nome;
-    this.alfabeto = alfabeto;
-    this.tamanhoSenha = tamanhoSenha;
+    setAlfabeto(alfabeto);
+    setTamanhoSenha(tamanhoSenha);
+    setMaxTentativas(maxTentativas);
   }
 
   public String getNome() {
@@ -22,19 +24,10 @@ public class Configuracao {
   }
 
   public void setNome(String nome) {
-
-    if (nome == null || nome.trim().length() == 0) {
+    if (nome == null || nome.trim().isEmpty()) {
       throw new IllegalArgumentException("Nome da configuração inválido");
     }
     this.nome = nome;
-  }
-
-  public String definirAlfabeto(String alfabeto) {
-
-    if (alfabeto == null || alfabeto.trim().length() == 0) {
-      throw new IllegalArgumentException("Alfabeto inválido");
-    }
-    return alfabeto;
   }
 
   public String getAlfabeto() {
@@ -42,7 +35,33 @@ public class Configuracao {
   }
 
   public void setAlfabeto(String alfabeto) {
+    if (alfabeto == null || alfabeto.trim().isEmpty()) {
+      throw new IllegalArgumentException("Alfabeto inválido");
+    }
+
+    // Verificar se há caracteres duplicados no alfabeto
+    if (temCaracteresDuplicados(alfabeto)) {
+      throw new IllegalArgumentException("O alfabeto não pode conter caracteres duplicados");
+    }
+
     this.alfabeto = alfabeto;
+  }
+
+  private boolean temCaracteresDuplicados(String str) {
+    // Convertendo a string para um array de caracteres
+    char[] caracteres = str.toCharArray();
+
+    // Ordenando o array para facilitar a verificação de duplicatas
+    Arrays.sort(caracteres);
+
+    // Verificando se há caracteres duplicados no array ordenado
+    for (int i = 0; i < caracteres.length - 1; i++) {
+      if (caracteres[i] == caracteres[i + 1]) {
+        return true; // Caracteres duplicados encontrados
+      }
+    }
+
+    return false; // Nenhum caractere duplicado encontrado
   }
 
   public int getTamanhoSenha() {
@@ -57,10 +76,11 @@ public class Configuracao {
   }
 
   public int getMaxTentativas() {
-    return MaxTentativas;
+    return maxTentativas;
   }
 
   public void setMaxTentativas(int maxTentativas) {
-    MaxTentativas = maxTentativas;
+    this.maxTentativas = maxTentativas;
   }
+
 }

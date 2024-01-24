@@ -2,6 +2,7 @@ package residenciatic18;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
@@ -13,9 +14,32 @@ public class TestConfiguracao {
   @Test
   void testSetAlfabeto() {
     Configuracao configuracao = new Configuracao();
-    String alfabeto = "ABCDEFGHIJ";
-    configuracao.setAlfabeto(alfabeto);
-    assertEquals(alfabeto, configuracao.getAlfabeto());
+
+    // Caso de teste 1: Alfabeto válido
+    String alfabetoValido = "ABCDEFGHIJ";
+    configuracao.setAlfabeto(alfabetoValido);
+    assertEquals(alfabetoValido, configuracao.getAlfabeto(), "Alfabeto deve ser igual ao valor definido");
+
+    // Caso de teste 2: Alfabeto nulo
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuracao.setAlfabeto(null);
+    }, "Deveria lançar uma exceção para alfabeto nulo");
+
+    // Caso de teste 3: Alfabeto vazio
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuracao.setAlfabeto("");
+    }, "Deveria lançar uma exceção para alfabeto vazio");
+
+    // Caso de teste 4: Alfabeto com caracteres duplicados
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuracao.setAlfabeto("AAB");
+    }, "Deveria lançar uma exceção para alfabeto com caracteres duplicados");
+
+    // Caso de teste 5: Verificar se o alfabeto foi alterado
+    String novoAlfabeto = "XYZ";
+    configuracao.setAlfabeto(novoAlfabeto);
+    assertNotEquals(alfabetoValido, configuracao.getAlfabeto(), "Alfabeto deve ter sido alterado");
+    assertEquals(novoAlfabeto, configuracao.getAlfabeto(), "Alfabeto deve ser igual ao novo valor definido");
   }
 
   @Test
