@@ -71,13 +71,15 @@ public class Jogo {
     }
 
     // Método que verifica se o jogador venceu ou perdeu o jogo e retorna um inteiro que representa o resultado
-    // 0 - Jogo não acabou ainda (não venceu e não perdeu) 
+    // 0 - Jogo não acabou ainda (não venceu e não perdeu)
     public int fimDeJogo() {
 
         if (this.venceu) {
             return 1;
+
         } else if (this.perdeu) {
             return 2;
+
         } else {
             return 0;
         }
