@@ -14,9 +14,9 @@ public class Configuracao {
 
   public Configuracao(String nome, String alfabeto, int tamanhoSenha, int maxTentativas) {
     this.nome = nome;
-    setAlfabeto(alfabeto);
-    setTamanhoSenha(tamanhoSenha);
-    setMaxTentativas(maxTentativas);
+    this.alfabeto = alfabeto;
+    this.tamanhoSenha = tamanhoSenha;
+    this.maxTentativas = maxTentativas;
   }
 
   public String getNome() {
@@ -48,6 +48,7 @@ public class Configuracao {
   }
 
   private boolean temCaracteresDuplicados(String str) {
+
     // Convertendo a string para um array de caracteres
     char[] caracteres = str.toCharArray();
 
@@ -57,11 +58,11 @@ public class Configuracao {
     // Verificando se há caracteres duplicados no array ordenado
     for (int i = 0; i < caracteres.length - 1; i++) {
       if (caracteres[i] == caracteres[i + 1]) {
-        return true; // Caracteres duplicados encontrados
+        return true; 
       }
     }
 
-    return false; // Nenhum caractere duplicado encontrado
+    return false; 
   }
 
   public int getTamanhoSenha() {
@@ -69,10 +70,22 @@ public class Configuracao {
   }
 
   public void setTamanhoSenha(int tamanhoSenha) {
-    if (tamanhoSenha < 1) {
-      throw new IllegalArgumentException("O tamanho da senha deve ser pelo menos 1 caracter");
+
+    try {
+      if (tamanhoSenha < 1) {
+        throw new IllegalArgumentException("Senha deve ter ao menos 1 caracter");
+      }
+
+      if (alfabeto != null && tamanhoSenha > alfabeto.length()) {
+        throw new IllegalArgumentException("Tamanho da senha não pode ser maior que o comprimento do alfabeto");
+      }
+
+      this.tamanhoSenha = tamanhoSenha;
+    } catch (IllegalArgumentException e) {
+
+      System.out.println("Exceção capturada: " + e.getMessage());
+      throw e; // Re-lança a exceção após o tratamento, se necessário.
     }
-    this.tamanhoSenha = tamanhoSenha;
   }
 
   public int getMaxTentativas() {

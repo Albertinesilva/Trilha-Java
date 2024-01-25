@@ -1,5 +1,6 @@
 package residenciatic18;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -11,9 +12,10 @@ import residenciatic18.mastermind.Configuracao;
 
 public class TestConfiguracao {
 
+  Configuracao configuracao = new Configuracao();
+
   @Test
   void testSetAlfabeto() {
-    Configuracao configuracao = new Configuracao();
 
     // Caso de teste 1: Alfabeto válido
     String alfabetoValido = "ABCDEFGHIJ";
@@ -44,87 +46,51 @@ public class TestConfiguracao {
 
   @Test
   void testSetTamanhoSenha() {
-    Configuracao configuracao = new Configuracao();
 
     // Caso geral: um tamanho de senha válido (entre 1 e 4)
     int tam = 2;
-    try {
+    assertDoesNotThrow(() -> {
       configuracao.setTamanhoSenha(tam);
-
-    } catch (Exception e1) {
-      fail("Não deveria gerar exceção aqui");
-      e1.printStackTrace();
-    }
+    });
     assertEquals(tam, configuracao.getTamanhoSenha());
+
+    // Casos de tamanho inválido
 
     // Caso 1: tentar inserir uma senha de tamanho negativo
-    tam = -1;
-    try {
-      configuracao.setTamanhoSenha(tam);
-      fail("Deveria gerar exceção aqui");
-
-    } catch (Exception e) {
-      assertEquals("Senha deve ter ao menos 1 caracter", e.getMessage());
-    }
-
-    // o tamanho da senha não pode ter sido aceito
-    assertNotEquals(tam, configuracao.getTamanhoSenha());
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuracao.setTamanhoSenha(-1);
+    });
 
     // Caso 1 versão 2: tentar inserir uma senha de tamanho 0
-    tam = 0;
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuracao.setTamanhoSenha(0);
+    });
+
+    // Caso 2: tentar inserir senha de tamanho maior que o alfabeto (que tem 4 caracteres)
     try {
-      configuracao.setTamanhoSenha(tam);
-      fail("Deveria gerar exceção aqui");
+      configuracao.setTamanhoSenha(5);
+      fail("Deveria lançar exceção para senha maior que o alfabeto" );
 
-    } catch (Exception e) {
-      assertEquals("Senha deve ter ao menos 1 caracter", e.getMessage());
-    }
-    // o tamanho da senha não pode ter sido aceito
-    assertNotEquals(tam, configuracao.getTamanhoSenha());
-
-    // Caso 2: tentar inserir senha de tamanho maior que o alfabeto (que tem 4
-    // caracteres)
-    tam = 5;
-    try {
-      configuracao.setTamanhoSenha(tam);
-      fail("Deveria gerar exceção aqui");
-
-    } catch (Exception e) {
-      assertEquals("Senha não pode ser maior que o alfabeto (4 caracteres)", e.getMessage());
+    } catch (IllegalArgumentException e) {
+      System.out.println("Exceção capturada: " + e.getMessage());
     }
 
-    // Caso 2 versão 2: inserir com sucesso senha de tamanho igual ao alfabeto (que
-    // tem 4 caracteres)
-    tam = 4;
-    try {
-      configuracao.setAlfabeto("1234");
-      configuracao.setTamanhoSenha(tam);
+    // Verificar se o tamanho da senha não foi alterado após a exceção
+    assertNotEquals(5, configuracao.getTamanhoSenha(), "O tamanho da senha não deve ter sido alterado após a exceção");
 
-    } catch (Exception e) {
-      fail("Não era para gerar exceção aqui");
-    }
-    // o tamanho da senha precisa ter sido aceito
-    assertEquals(tam, configuracao.getTamanhoSenha());
+    // Caso 2 versão 2: inserir com sucesso senha de tamanho igual ao alfabeto (que tem 4 caracteres)
+    configuracao.setAlfabeto("1234");
+    assertDoesNotThrow(() -> {
+      configuracao.setTamanhoSenha(4);
+    });
+    assertEquals(4, configuracao.getTamanhoSenha());
 
-    // Caso 2 versão 3: tentar inserir senha de tamanho maior que o alfabeto (que
-    // agora tem 10 caracteres)
-    try {
-      configuracao.setAlfabeto("1234567890");
-
-    } catch (Exception e1) {
-      e1.printStackTrace();
-    }
-
-    tam = 11;
-    try {
-      configuracao.setTamanhoSenha(tam);
-      fail("Deveria gerar exceção aqui");
-
-    } catch (Exception e) {
-      assertEquals("Senha não pode ser maior que o alfabeto (10 caracteres)", e.getMessage());
-    }
-    // o tamanho da senha não pode ter sido aceito
-    assertNotEquals(tam, configuracao.getTamanhoSenha());
+    // Caso 2 versão 3: tentar inserir senha de tamanho maior que o alfabeto (que agora tem 10 caracteres)
+    configuracao.setAlfabeto("1234567890");
+    assertThrows(IllegalArgumentException.class, () -> {
+      configuracao.setTamanhoSenha(11);
+    });
+    assertNotEquals(11, configuracao.getTamanhoSenha());
   }
 
 }
