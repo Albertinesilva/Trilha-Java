@@ -58,11 +58,11 @@ public class Configuracao {
     // Verificando se há caracteres duplicados no array ordenado
     for (int i = 0; i < caracteres.length - 1; i++) {
       if (caracteres[i] == caracteres[i + 1]) {
-        return true; 
+        return true;
       }
     }
 
-    return false; 
+    return false;
   }
 
   public int getTamanhoSenha() {
@@ -94,6 +94,42 @@ public class Configuracao {
 
   public void setMaxTentativas(int maxTentativas) {
     this.maxTentativas = maxTentativas;
+  }
+
+  public String gerarSenha() {
+
+    // Verificar se a configuração está válida
+    if (alfabeto == null || alfabeto.trim().isEmpty()) {
+      throw new IllegalStateException("Alfabeto não definido");
+    }
+
+    if (tamanhoSenha < 1) {
+      throw new IllegalStateException("Tamanho da senha não definido");
+    }
+
+    // Gerar senha aleatória
+    StringBuilder senha = new StringBuilder();
+
+    for (int i = 0; i < tamanhoSenha; i++) {
+      int indice = (int) (Math.random() * alfabeto.length());
+      senha.append(alfabeto.charAt(indice));
+    }
+
+    return senha.toString();
+  }
+
+  public int getTentativas() {
+    return maxTentativas;
+  }
+
+  public int getTentativasRestantes(int tentativas) {
+    return maxTentativas - tentativas;
+  }
+
+  @Override
+  public String toString() {
+    return "Configuracao [alfabeto=" + alfabeto + ", maxTentativas=" + maxTentativas + ", nome=" + nome
+        + ", tamanhoSenha=" + tamanhoSenha + "]";
   }
 
 }
