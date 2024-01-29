@@ -1,4 +1,4 @@
-package residenciatic18;
+package residenciatic18.testmastermid;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -9,7 +9,7 @@ import residenciatic18.mastermind.Configuracao;
 import residenciatic18.mastermind.ListaConfiguracoes;
 
 public class TestListaConfiguracoes {
-  
+
   @Test
   void testNovaConfiguracao() {
 
@@ -21,7 +21,7 @@ public class TestListaConfiguracoes {
 
     Configuracao c2 = new Configuracao();
     c2.setNome("Conf 2");
-    
+
     ListaConfiguracoes listaConfiguracoes = new ListaConfiguracoes();
 
     // caso geral: acrescentar uma lista perfeitamente válida

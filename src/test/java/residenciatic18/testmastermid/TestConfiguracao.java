@@ -1,4 +1,4 @@
-package residenciatic18;
+package residenciatic18.testmastermid;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;

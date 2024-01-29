@@ -1,4 +1,4 @@
-package residenciatic18;
+package residenciatic18.testmastermid;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
