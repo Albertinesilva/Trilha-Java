@@ -1,6 +1,7 @@
 package residenciatic18.pratica8.services;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import residenciatic18.pratica8.entities.Fatura;
 import residenciatic18.pratica8.entities.Imovel;
@@ -25,12 +26,11 @@ public class FaturaService {
 		while (true) {
 			int valorLido;
 			try {
-				@SuppressWarnings("resource")
-				Scanner scanner = new Scanner(System.in);
 
 				Views.limparTela();
 				System.out.print("Informe a leitura realizada: ");
-				valorLido = scanner.nextInt();
+				valorLido = Views.scan.nextInt();
+
 				if (imovel.getUltimaLeitura() > valorLido) {
 					Views.cxMsg("A leitura atual não pode ser menor que a leitura antiga!");
 					continue;
@@ -38,6 +38,7 @@ public class FaturaService {
 				imovel.setUltimaLeitura(valorLido);
 				novaFatura(imovel);
 				Views.cxMsg("O consumo foi registrado e a fatura foi gerada!");
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -59,8 +60,8 @@ public class FaturaService {
 		for (Fatura f : listaFatura) {
 			System.out.println(f.toString());
 		}
-		Scanner scanner = new Scanner(System.in);
-		Views.pausar(scanner);
+
+		Views.pausar(Views.scan);
 	}
 
 	public void faturasEmAberto() {
@@ -88,12 +89,11 @@ public class FaturaService {
 		int k = 0;
 		while (valorLido > 12 || valorLido < 1) {
 			try {
-				@SuppressWarnings("resource")
-				Scanner scanner = new Scanner(System.in);
 
 				Views.limparTela();
 				System.out.print("Informe o mês referente à fatura: ");
-				valorLido = scanner.nextInt();
+				valorLido = Views.scan.nextInt();
+
 			} catch (Exception e) {
 				e.printStackTrace();
 				return null;
@@ -129,8 +129,8 @@ public class FaturaService {
 			}
 			System.out.println("");
 		}
-		Scanner scanner = new Scanner(System.in);
-		Views.pausar(scanner);
+
+		Views.pausar(Views.scan);
 	}
 
 	public void pagamentosPorFatura() {
@@ -148,8 +148,8 @@ public class FaturaService {
 		for (Pagamento p : encontrada.getPagamentos()) {
 			System.out.println(p.toString());
 		}
-		Scanner scanner = new Scanner(System.in);
-		Views.pausar(scanner);
+
+		Views.pausar(Views.scan);
 	}
 
 	public void todosOsReembolsos() {
@@ -163,8 +163,8 @@ public class FaturaService {
 			System.out.println(f.getReembolso().toString());
 			System.out.println("");
 		}
-		Scanner scanner = new Scanner(System.in);
-		Views.pausar(scanner);
+
+		Views.pausar(Views.scan);
 	}
 
 	public void reembolsosPorFatura() {
@@ -183,8 +183,8 @@ public class FaturaService {
 			System.out.println(encontrada.getReembolso().toString());
 		else
 			System.out.println("Não há reembolsos para essa fatura!");
-		Scanner scanner = new Scanner(System.in);
-		Views.pausar(scanner);
+
+		Views.pausar(Views.scan);
 	}
 
 	public ImovelService newImovelRepository() {
