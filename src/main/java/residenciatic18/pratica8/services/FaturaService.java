@@ -65,6 +65,7 @@ public class FaturaService {
 	}
 
 	public void faturasEmAberto() {
+		
 		Views.limparTela();
 		System.out.println("=============== FATURAS EM ABERTO ===============");
 		System.out.println("");
@@ -150,7 +151,7 @@ public class FaturaService {
 		Views.limparTela();
 		System.out.println("=============== PAGAMENTOS RELACIONADOS À FATURA ===============");
 		System.out.println("");
-		
+
 		for (Pagamento p : encontrada.getPagamentos()) {
 			System.out.println(p.toString());
 		}

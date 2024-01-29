@@ -103,6 +103,18 @@ public class Fatura {
         this.valorTotal = (ultimaLeitura - penultimaLeitura) * custoPorKWh;
     }
 
+    public void registraLeitura(int novaLeitura) {
+        // Atualiza a penúltima leitura com o valor atual da última leitura
+        this.penultimaLeitura = this.ultimaLeitura;
+    
+        // Atualiza a última leitura com a nova leitura
+        this.ultimaLeitura = novaLeitura;
+    
+        // Recalcula o valor total da fatura
+        calcularValorFatura();
+    }
+    
+
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.##");
