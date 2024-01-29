@@ -62,11 +62,11 @@ public class Utils {
       imprimirFormatado(LocalDateTime.now());
       calcularDiasRestantes(LocalDateTime.now());
       System.out.print("\n\t===== ENERGIA COELHO =====");
-      System.out.print("\n\t[1] - GESTÃO CLIENTES");
-      System.out.print("\n\t[2] - GESTÃO IMÓVEIS");
-      System.out.print("\n\t[3] - GESTÃO CONTAS");
-      System.out.print("\n\t[4] - GESTÃO PAGAMENTOS");
-      System.out.print("\n\t[5] - GESTÃO FALHAS");
+      System.out.print("\n\t[1] - GESTAO CLIENTES");
+      System.out.print("\n\t[2] - GESTAO IMOVEIS");
+      System.out.print("\n\t[3] - GESTAO CONTAS");
+      System.out.print("\n\t[4] - GESTAO PAGAMENTOS");
+      System.out.print("\n\t[5] - GESTAO FALHAS");
       System.out.print("\n\t[0] - SAIR");
       System.out.print("\n\tENTRADA -> ");
 
