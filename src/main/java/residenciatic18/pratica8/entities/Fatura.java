@@ -104,16 +104,29 @@ public class Fatura {
     }
 
     public void registraLeitura(int novaLeitura) {
-        // Atualiza a penúltima leitura com o valor atual da última leitura
-        this.penultimaLeitura = this.ultimaLeitura;
-    
-        // Atualiza a última leitura com a nova leitura
-        this.ultimaLeitura = novaLeitura;
-    
-        // Recalcula o valor total da fatura
-        calcularValorFatura();
+
+        try {
+
+            System.out.println("Entrou no método registraLeitura()");
+
+            if (novaLeitura <= this.ultimaLeitura) {
+                System.out.println("Lançando exceção: A nova leitura deve ser maior que a última leitura.");
+                throw new IllegalArgumentException("A nova leitura deve ser maior que a última leitura.");
+            }
+            
+            // Atualiza a penúltima leitura com o valor atual da última leitura
+            this.penultimaLeitura = this.ultimaLeitura;
+
+            // Atualiza a última leitura com a nova leitura
+            this.ultimaLeitura = novaLeitura;
+
+            // Recalcula o valor total da fatura
+            calcularValorFatura();
+
+        } catch (IllegalArgumentException e) {
+            System.err.println("Erro ao registrar leitura: " + e.getMessage());
+        }
     }
-    
 
     @Override
     public String toString() {
