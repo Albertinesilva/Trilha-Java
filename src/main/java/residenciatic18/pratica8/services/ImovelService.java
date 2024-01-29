@@ -16,6 +16,7 @@ public class ImovelService implements ImovelRepository {
     imoveis.add(imovel);
   }
 
+  @Override
   public void cadastrar() {
     Views.limparTela();
     System.out.println("\n\t===== CADASTRO DE IMÓVEL =====");
@@ -35,6 +36,7 @@ public class ImovelService implements ImovelRepository {
     Views.pausar(Views.scan);
   }
 
+  @Override
   public void listar() {
 
     Views.limparTela();
@@ -52,6 +54,7 @@ public class ImovelService implements ImovelRepository {
     Views.pausar(Views.scan);
   }
 
+  @Override
   public void editar() {
 
     Views.limparTela();
@@ -120,6 +123,7 @@ public class ImovelService implements ImovelRepository {
     Views.pausar(Views.scan);
   }
 
+  @Override
   public void excluir() {
 
     Views.limparTela();
@@ -177,6 +181,7 @@ public class ImovelService implements ImovelRepository {
     Views.pausar(Views.scan);
   }
 
+  @Override
   public void pesquisar() {
 
     Views.limparTela();
@@ -232,6 +237,7 @@ public class ImovelService implements ImovelRepository {
     return valor;
   }
 
+  @Override
   public Imovel buscaImovel() {
 
     Views.limparTela();

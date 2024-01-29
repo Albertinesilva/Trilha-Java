@@ -88,6 +88,7 @@ public class FaturaService {
 		int valorLido = 0;
 		int k = 0;
 		while (valorLido > 12 || valorLido < 1) {
+
 			try {
 
 				Views.limparTela();
@@ -108,6 +109,7 @@ public class FaturaService {
 		}
 
 		for (Fatura fatura : listaFatura) {
+
 			if (fatura.getMatriculaImovel().equalsIgnoreCase(imovel.getMatricula())
 					&& fatura.getDataEmissao().getMonthValue() == valorLido) {
 				return fatura;
@@ -121,9 +123,12 @@ public class FaturaService {
 		Views.limparTela();
 		System.out.println("=============== TODOS OS PAGAMENTOS ===============");
 		System.out.println("");
+
 		for (Fatura f : listaFatura) {
+
 			System.out.println("===== IMÓVEL DE MATRÍCULA: " + f.getMatriculaImovel() + " =====");
 			System.out.println("");
+
 			for (Pagamento p : f.getPagamentos()) {
 				System.out.println(p.toString());
 			}
@@ -145,6 +150,7 @@ public class FaturaService {
 		Views.limparTela();
 		System.out.println("=============== PAGAMENTOS RELACIONADOS À FATURA ===============");
 		System.out.println("");
+		
 		for (Pagamento p : encontrada.getPagamentos()) {
 			System.out.println(p.toString());
 		}

@@ -20,6 +20,7 @@ public class ClienteService implements ClienteRepository {
     clientes.add(cliente);
   }
 
+  @Override
   public void cadastrar() 
   {
     Views.limparTela();
@@ -38,6 +39,7 @@ public class ClienteService implements ClienteRepository {
     Views.pausar(Views.scan);
   }
 
+  @Override
   public void listar() 
   {
     Views.limparTela();
@@ -55,6 +57,7 @@ public class ClienteService implements ClienteRepository {
     Views.pausar(Views.scan);
   }
 
+  @Override
   public void editar() 
   {
 
@@ -116,6 +119,7 @@ public class ClienteService implements ClienteRepository {
     return;
   }
 
+  @Override
   public void excluir() 
   {
 
@@ -168,6 +172,7 @@ public class ClienteService implements ClienteRepository {
     }
   }
 
+  @Override
   public void pesquisar() 
   {
     Views.limparTela();

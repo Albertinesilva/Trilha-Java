@@ -19,6 +19,7 @@ public class FalhaService implements FalhaRepository {
     public static List<FalhaGeracao> falhasGer = new ArrayList<>();
     ReparoRepository reparoRepository = new ReparoService();
 
+    @Override
     public void cadastrarFalhaDistribuicao() {
 
         Views.limparTela();
@@ -58,6 +59,7 @@ public class FalhaService implements FalhaRepository {
         falhasDist.add(falhaDist);
     }
 
+    @Override
     public void cadastrarFalhaGeracao() {
 
         ImovelRepository imovelRepository = new ImovelService();
@@ -95,6 +97,7 @@ public class FalhaService implements FalhaRepository {
         falhasGer.add(falhaGer);
     }
 
+    @Override
     public void listar() {
 
         Views.limparTela();
@@ -156,6 +159,7 @@ public class FalhaService implements FalhaRepository {
 
     }
 
+    @Override
     public FalhaDistribuicao buscarFalhaDistribuicao() {
 
         Views.limparTela();
