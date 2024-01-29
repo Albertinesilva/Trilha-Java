@@ -2,7 +2,7 @@ package residenciatic18.pratica8.entities;
 import java.time.LocalDate;
 import java.util.*;
 
-import residenciatic18.pratica8.utils.Utils;
+import residenciatic18.pratica8.views.Views;
 
 import java.text.DecimalFormat;
 
@@ -56,14 +56,14 @@ public class Fatura {
     
     public void novoPagamento() {
     	if(quitado) {
-    		Utils.cxMsg("A fatura já está quitadaa!");
+    		Views.cxMsg("A fatura já está quitadaa!");
     		return;
     	}
     	
     	float totalPago = 0;
     	Pagamento novo = Pagamento.obterDadosPagamento();
     	if(novo == null) {
-    		Utils.cxMsg("Pagamento não realizado");
+    		Views.cxMsg("Pagamento não realizado");
     		return;
     	}
     	this.pagamentos.add(novo);
@@ -74,15 +74,15 @@ public class Fatura {
     	if(totalPago < this.valorTotal) {
     		DecimalFormat df = new DecimalFormat("#.##");
             String msg = String.format("A fatura foi parcialmente paga, restando R$%s a pagar!", df.format(this.valorTotal - totalPago));
-            Utils.cxMsg(msg);
+            Views.cxMsg(msg);
             return;
     	}
     	
 		this.quitado = true;
-		Utils.cxMsg("A fatura foi paga!");
+		Views.cxMsg("A fatura foi paga!");
 		if(totalPago > this.valorTotal) {
 			this.reembolso = new Reembolso(totalPago - this.valorTotal);
-			Utils.cxMsg(this.reembolso.toString());
+			Views.cxMsg(this.reembolso.toString());
 		}
     }
     

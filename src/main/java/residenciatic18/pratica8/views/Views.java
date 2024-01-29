@@ -1,4 +1,4 @@
-package residenciatic18.pratica8.utils;
+package residenciatic18.pratica8.views;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,7 +18,7 @@ import residenciatic18.pratica8.services.FaturaService;
 import residenciatic18.pratica8.services.ImovelService;
 import residenciatic18.pratica8.services.ReparoService;
 
-public class Utils {
+public class Views {
 
   LocalDateTime agora = LocalDateTime.now();
   public static Scanner scan = new Scanner(System.in);
@@ -658,6 +658,6 @@ public class Utils {
   public static void cxMsg(String mensagem) {
     limparTela();
     System.out.println(mensagem);
-    pausar(Utils.scan);
+    pausar(Views.scan);
   }
 }

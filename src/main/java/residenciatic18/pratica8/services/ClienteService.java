@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 
 import residenciatic18.pratica8.entities.Cliente;
 import residenciatic18.pratica8.repositories.ClienteRepository;
-import residenciatic18.pratica8.utils.Utils;
+import residenciatic18.pratica8.views.Views;
 
 
 public class ClienteService implements ClienteRepository {
@@ -22,25 +22,25 @@ public class ClienteService implements ClienteRepository {
 
   public void cadastrar() 
   {
-    Utils.limparTela();
+    Views.limparTela();
     System.out.println("\n\t===== CADASTRO DE CLIENTE =====");
 
     System.out.print("\n\tNome do Cliente: ");
-    String nome = Utils.scan.nextLine();
+    String nome = Views.scan.nextLine();
 
     System.out.print("\n\tDigite o CPF: ");
-    String cpf = Utils.scan.nextLine();
+    String cpf = Views.scan.nextLine();
 
     clientes.add(new Cliente(nome, cpf));
 
-    Utils.limparTela();
+    Views.limparTela();
     System.out.println("\n\tCliente cadastrado com sucesso!");
-    Utils.pausar(Utils.scan);
+    Views.pausar(Views.scan);
   }
 
   public void listar() 
   {
-    Utils.limparTela();
+    Views.limparTela();
     System.out.print("\n\t===== LISTAGEM DE CLIENTES =====");
 
     if (clientes.size() > 0) {
@@ -52,116 +52,116 @@ public class ClienteService implements ClienteRepository {
       System.out.println("\n\tNão há clientes cadastrados!");
     }
 
-    Utils.pausar(Utils.scan);
+    Views.pausar(Views.scan);
   }
 
   public void editar() 
   {
 
-    Utils.limparTela();
+    Views.limparTela();
     System.out.println("\n\t===== EDIÇÃO DE CLIENTE =====");
 
     System.out.print("\n\tDigite o CPF do cliente: ");
-    String cpf = Utils.scan.nextLine();
+    String cpf = Views.scan.nextLine();
 
     for (Cliente cliente : clientes) {
       if (cliente.getCpf().equals(cpf)) {
 
-        Utils.limparTela();
+        Views.limparTela();
         System.out.print("\n\t===== DADOS DO CLIENTE =====");
         System.out.println(cliente.toString());
 
         while (true) {
           try {
             System.out.print("\n\tDeseja realmente editar este cliente? (S/N): ");
-            String opcao = Utils.scan.nextLine();
+            String opcao = Views.scan.nextLine();
 
             if (!opcao.equalsIgnoreCase("s") && !opcao.equalsIgnoreCase("n")) {
               throw new InputMismatchException("Opção inválida. Digite 'S' para confirmar ou 'N' para cancelar.");
             }
 
             if (opcao.equalsIgnoreCase("s")) {
-              Utils.limparTela();
+              Views.limparTela();
               System.out.print("\n\tDigite o novo nome do cliente: ");
-              String nome = Utils.scan.nextLine();
+              String nome = Views.scan.nextLine();
 
               System.out.println("\n\tDigite o novo CPF: ");
-              cpf = Utils.scan.nextLine();
+              cpf = Views.scan.nextLine();
 
               cliente.setNome(nome);
               cliente.setCpf(cpf);
 
-              Utils.limparTela();
+              Views.limparTela();
               System.out.print("\n\t===== CLIENTE EDITADO =====");
               System.out.println(cliente.toString());
               System.out.println("\n\tCliente editado com sucesso!");
-              Utils.pausar(Utils.scan);
+              Views.pausar(Views.scan);
               return;
 
             } else {
               System.out.println("\n\tOperação cancelada!");
-              Utils.pausar(Utils.scan);
+              Views.pausar(Views.scan);
               return;
             }
           } catch (InputMismatchException e) {
             System.out.println("\n\t" + e.getMessage());
             // Limpar o buffer do scanner antes de continuar o loop
-            Utils.scan.nextLine();
+            Views.scan.nextLine();
           }
         }
       }
     }
     System.out.println("\n\tOps, Cliente não encontrado!..");
-    Utils.pausar(Utils.scan);
+    Views.pausar(Views.scan);
     return;
   }
 
   public void excluir() 
   {
 
-    Utils.limparTela();
+    Views.limparTela();
     System.out.println("\n\t===== EXCLUSÃO DE CLIENTE =====");
 
     System.out.print("\n\tDigite o CPF do cliente: ");
-    String cpf = Utils.scan.nextLine();
+    String cpf = Views.scan.nextLine();
 
     for (Cliente cliente : clientes) {
       if (cliente.getCpf().equals(cpf)) {
 
-        Utils.limparTela();
+        Views.limparTela();
         System.out.print("\n\t===== DADOS DO CLIENTE =====");
         System.out.println(cliente.toString());
 
         while (true) {
           try {
             System.out.print("\n\tDeseja realmente excluir este cliente? (S/N): ");
-            String opcao = Utils.scan.nextLine();
+            String opcao = Views.scan.nextLine();
 
             if (!opcao.equalsIgnoreCase("s") && !opcao.equalsIgnoreCase("n")) {
               throw new InputMismatchException("Opção inválida. Digite 'S' para confirmar ou 'N' para cancelar.");
             }
 
             if (opcao.equalsIgnoreCase("s")) {
-              Utils.limparTela();
+              Views.limparTela();
               clientes.remove(cliente);
               System.out.println("\n\tCliente removido com sucesso!");
-              Utils.pausar(Utils.scan);
+              Views.pausar(Views.scan);
               return;
 
             } else {
               System.out.println("\n\tOperação cancelada!");
-              Utils.pausar(Utils.scan);
+              Views.pausar(Views.scan);
               return;
             }
           } catch (InputMismatchException e) {
             System.out.println("\n\t" + e.getMessage());
             // Limpar o buffer do scanner antes de continuar o loop
-            Utils.scan.nextLine();
+            Views.scan.nextLine();
           }
         }
       } else {
         System.out.println("\n\tOps, Cliente não encontrado!..");
-        Utils.pausar(Utils.scan);
+        Views.pausar(Views.scan);
         return;
 
       }
@@ -170,12 +170,12 @@ public class ClienteService implements ClienteRepository {
 
   public void pesquisar() 
   {
-    Utils.limparTela();
+    Views.limparTela();
     System.out.println("\n\t===== PESQUISA DE CLIENTE =====");
 
     try {
       System.out.print("\n\tDigite o CPF do cliente: ");
-      String cpf = Utils.scan.nextLine();
+      String cpf = Views.scan.nextLine();
 
       Cliente clienteEncontrado = null;
 
@@ -187,19 +187,19 @@ public class ClienteService implements ClienteRepository {
       }
 
       if (clienteEncontrado != null) {
-        Utils.limparTela();
+        Views.limparTela();
         System.out.print("\n\t===== DADOS DO CLIENTE =====");
         System.out.println(clienteEncontrado.toString());
-        Utils.pausar(Utils.scan);
+        Views.pausar(Views.scan);
       } else {
         throw new NoSuchElementException("\n\tOps, Cliente não encontrado!..");
       }
     } catch (NoSuchElementException e) {
       System.out.println(e.getMessage());
-      Utils.pausar(Utils.scan);
+      Views.pausar(Views.scan);
     } catch (Exception e) {
       System.out.println("\n\tOps, ocorreu um erro inesperado: " + e.getMessage());
-      Utils.pausar(Utils.scan);
+      Views.pausar(Views.scan);
     }
   }
 

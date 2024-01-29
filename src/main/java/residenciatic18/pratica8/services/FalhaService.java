@@ -11,7 +11,7 @@ import residenciatic18.pratica8.entities.Imovel;
 import residenciatic18.pratica8.repositories.FalhaRepository;
 import residenciatic18.pratica8.repositories.ImovelRepository;
 import residenciatic18.pratica8.repositories.ReparoRepository;
-import residenciatic18.pratica8.utils.Utils;
+import residenciatic18.pratica8.views.Views;
 
 public class FalhaService implements FalhaRepository {
 
@@ -21,15 +21,15 @@ public class FalhaService implements FalhaRepository {
 
     public void cadastrarFalhaDistribuicao() {
 
-        Utils.limparTela();
+        Views.limparTela();
         System.out.println("\n\t===== CADASTRO DE FALHA DE DISTRIBUIÇÃO=====");
 
         System.out.println("\n\tA falha foi reportada por algum cliente? (S/N)");
-        String resposta = Utils.scan.nextLine();
+        String resposta = Views.scan.nextLine();
         String matriculaImovel = null;
         if (resposta.equalsIgnoreCase("S")) {
             System.out.print("\n\tDigite a matrícula do imóvel: ");
-            matriculaImovel = Utils.scan.nextLine();
+            matriculaImovel = Views.scan.nextLine();
 
             // Imovel imovel = ImovelService.buscaImovel();
 
@@ -41,14 +41,14 @@ public class FalhaService implements FalhaRepository {
         }
 
         System.out.print("\n\tDigite a descrição da falha: ");
-        String descricao = Utils.scan.nextLine();
+        String descricao = Views.scan.nextLine();
 
         System.out.print("\n\tDigite a previsão de conclusão: ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate previsaoConclusao = LocalDate.parse(Utils.scan.nextLine(), formatter);
+        LocalDate previsaoConclusao = LocalDate.parse(Views.scan.nextLine(), formatter);
 
         System.out.print("\n\tDigite a data de início: ");
-        LocalDate dataInicio = LocalDate.parse(Utils.scan.nextLine(), formatter);
+        LocalDate dataInicio = LocalDate.parse(Views.scan.nextLine(), formatter);
 
         FalhaDistribuicao falhaDist = new FalhaDistribuicao(matriculaImovel, descricao, previsaoConclusao, dataInicio,
                 null);
@@ -62,18 +62,18 @@ public class FalhaService implements FalhaRepository {
 
         ImovelRepository imovelRepository = new ImovelService();
 
-        Utils.limparTela();
+        Views.limparTela();
         System.out.println("\n\t===== CADASTRO DE FALHA DE GERAÇÃO =====");
 
         System.out.println("\n\tA falha foi reportada por algum cliente? (S/N)");
-        String resposta = Utils.scan.nextLine();
+        String resposta = Views.scan.nextLine();
         String matriculaImovel = null;
         if (resposta.equalsIgnoreCase("S")) {
             System.out.print("\n\tDigite a matrícula do imóvel: ");
             Imovel imovel = imovelRepository.buscaImovel();
 
             if (imovel == null) {
-                Utils.cxMsg("Imóvel não encontrado!");
+                Views.cxMsg("Imóvel não encontrado!");
                 return;
             }
 
@@ -81,14 +81,14 @@ public class FalhaService implements FalhaRepository {
         }
 
         System.out.print("\n\tDigite a descrição da falha: ");
-        String descricao = Utils.scan.nextLine();
+        String descricao = Views.scan.nextLine();
 
         System.out.print("\n\tDigite a previsão de conclusão: ");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate previsaoConclusao = LocalDate.parse(Utils.scan.nextLine(), formatter);
+        LocalDate previsaoConclusao = LocalDate.parse(Views.scan.nextLine(), formatter);
 
         System.out.print("\n\tDigite a data de início: ");
-        LocalDate dataInicio = LocalDate.parse(Utils.scan.nextLine(), formatter);
+        LocalDate dataInicio = LocalDate.parse(Views.scan.nextLine(), formatter);
 
         FalhaGeracao falhaGer = new FalhaGeracao(matriculaImovel, descricao, previsaoConclusao, dataInicio, null);
 
@@ -97,7 +97,7 @@ public class FalhaService implements FalhaRepository {
 
     public void listar() {
 
-        Utils.limparTela();
+        Views.limparTela();
         System.out.println("\n\t===== LISTA DE FALHAS =====");
         System.out.print("\n\t===== FALHAS DE DISTRIBUIÇÃO =====");
         for (FalhaDistribuicao falhaDist : falhasDist) {
@@ -108,12 +108,12 @@ public class FalhaService implements FalhaRepository {
             System.out.println(falhaGer.toString());
         }
         System.out.println("\t===== FIM DA LISTA =====");
-        Utils.pausar(Utils.scan);
+        Views.pausar(Views.scan);
     }
 
     public void editar() {
 
-        Utils.limparTela();
+        Views.limparTela();
         System.out.println("\n\t===== EDITAR FALHA =====");
         System.out.print("\n\t===== FALHAS DE DISTRIBUIÇÃO =====");
         for (FalhaDistribuicao falhaDist : falhasDist) {
@@ -125,17 +125,17 @@ public class FalhaService implements FalhaRepository {
         }
         System.out.println("\n\t===== FIM DA LISTA =====");
         System.out.print("\n\tDigite o ID da falha que deseja editar: ");
-        int id = Utils.scan.nextInt();
-        Utils.scan.nextLine();
+        int id = Views.scan.nextInt();
+        Views.scan.nextLine();
         for (FalhaDistribuicao falhaDist : falhasDist) {
             if (falhaDist.getId() == id) {
                 System.out.print("\n\tDigite a nova data de fim: ");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate dataFim = LocalDate.parse(Utils.scan.nextLine(), formatter);
+                LocalDate dataFim = LocalDate.parse(Views.scan.nextLine(), formatter);
                 falhaDist.setDataFim(dataFim);
                 System.out.println("\n\t===== FALHA EDITADA =====");
                 System.out.println(falhaDist.toString());
-                Utils.pausar(Utils.scan);
+                Views.pausar(Views.scan);
                 return;
             }
         }
@@ -143,36 +143,36 @@ public class FalhaService implements FalhaRepository {
             if (falhaGer.getId() == id) {
                 System.out.print("\n\tDigite a nova data de fim: ");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate dataFim = LocalDate.parse(Utils.scan.nextLine(), formatter);
+                LocalDate dataFim = LocalDate.parse(Views.scan.nextLine(), formatter);
                 falhaGer.setDataFim(dataFim);
                 System.out.println("\n\t===== FALHA EDITADA =====");
                 System.out.println(falhaGer.toString());
-                Utils.pausar(Utils.scan);
+                Views.pausar(Views.scan);
                 return;
             }
         }
         System.out.println("\n\t===== FALHA NÃO ENCONTRADA =====");
-        Utils.pausar(Utils.scan);
+        Views.pausar(Views.scan);
 
     }
 
     public FalhaDistribuicao buscarFalhaDistribuicao() {
 
-        Utils.limparTela();
+        Views.limparTela();
         System.out.println("\n\t===== BUSCAR FALHA DE DISTRIBUIÇÃO =====");
         System.out.print("\n\tDigite o ID da falha que deseja buscar: ");
-        int id = Utils.scan.nextInt();
-        Utils.scan.nextLine();
+        int id = Views.scan.nextInt();
+        Views.scan.nextLine();
         for (FalhaDistribuicao falhaDist : falhasDist) {
             if (falhaDist.getId() == id) {
                 System.out.println("\n\t===== FALHA ENCONTRADA =====");
                 System.out.println(falhaDist.toString());
-                Utils.pausar(Utils.scan);
+                Views.pausar(Views.scan);
                 return falhaDist;
             }
         }
         System.out.println("\n\t===== FALHA NÃO ENCONTRADA =====");
-        Utils.pausar(Utils.scan);
+        Views.pausar(Views.scan);
         return null;
     }
 

@@ -6,7 +6,7 @@ import residenciatic18.pratica8.entities.Fatura;
 import residenciatic18.pratica8.entities.Imovel;
 import residenciatic18.pratica8.entities.Pagamento;
 import residenciatic18.pratica8.repositories.ImovelRepository;
-import residenciatic18.pratica8.utils.Utils;
+import residenciatic18.pratica8.views.Views;
 
 public class FaturaService {
 
@@ -18,7 +18,7 @@ public class FaturaService {
 		Imovel imovel = imovelRepository.buscaImovel();
 
 		if (imovel == null) {
-			Utils.cxMsg("Imóvel não encontrado!");
+			Views.cxMsg("Imóvel não encontrado!");
 			return;
 		}
 
@@ -28,16 +28,16 @@ public class FaturaService {
 				@SuppressWarnings("resource")
 				Scanner scanner = new Scanner(System.in);
 
-				Utils.limparTela();
+				Views.limparTela();
 				System.out.print("Informe a leitura realizada: ");
 				valorLido = scanner.nextInt();
 				if (imovel.getUltimaLeitura() > valorLido) {
-					Utils.cxMsg("A leitura atual não pode ser menor que a leitura antiga!");
+					Views.cxMsg("A leitura atual não pode ser menor que a leitura antiga!");
 					continue;
 				}
 				imovel.setUltimaLeitura(valorLido);
 				novaFatura(imovel);
-				Utils.cxMsg("O consumo foi registrado e a fatura foi gerada!");
+				Views.cxMsg("O consumo foi registrado e a fatura foi gerada!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -52,7 +52,7 @@ public class FaturaService {
 	}
 
 	public void todasAsFaturas() {
-		Utils.limparTela();
+		Views.limparTela();
 		System.out.println("=============== TODAS AS FATURAS ===============");
 		System.out.println("");
 
@@ -60,11 +60,11 @@ public class FaturaService {
 			System.out.println(f.toString());
 		}
 		Scanner scanner = new Scanner(System.in);
-		Utils.pausar(scanner);
+		Views.pausar(scanner);
 	}
 
 	public void faturasEmAberto() {
-		Utils.limparTela();
+		Views.limparTela();
 		System.out.println("=============== FATURAS EM ABERTO ===============");
 		System.out.println("");
 
@@ -72,7 +72,7 @@ public class FaturaService {
 			if (!f.isQuitado())
 				System.out.println(f.toString());
 		}
-		Utils.pausar(Utils.scan);
+		Views.pausar(Views.scan);
 	}
 
 	public Fatura obterFaturaPorMesEmissao() {
@@ -80,7 +80,7 @@ public class FaturaService {
 		Imovel imovel = imovelRepository.buscaImovel();
 
 		if (imovel == null) {
-			Utils.cxMsg("Imóvel não encontrado!");
+			Views.cxMsg("Imóvel não encontrado!");
 			return null;
 		}
 
@@ -91,7 +91,7 @@ public class FaturaService {
 				@SuppressWarnings("resource")
 				Scanner scanner = new Scanner(System.in);
 
-				Utils.limparTela();
+				Views.limparTela();
 				System.out.print("Informe o mês referente à fatura: ");
 				valorLido = scanner.nextInt();
 			} catch (Exception e) {
@@ -99,11 +99,11 @@ public class FaturaService {
 				return null;
 			}
 			if (valorLido > 12 || valorLido < 1) {
-				Utils.cxMsg("O mês informado é inválido!");
+				Views.cxMsg("O mês informado é inválido!");
 				k++;
 			}
 			if (k == 3) {
-				Utils.cxMsg("Limite de tentativas excedidas! Tente novamente!");
+				Views.cxMsg("Limite de tentativas excedidas! Tente novamente!");
 			}
 		}
 
@@ -118,7 +118,7 @@ public class FaturaService {
 
 	public static void todosOsPagamentos() {
 
-		Utils.limparTela();
+		Views.limparTela();
 		System.out.println("=============== TODOS OS PAGAMENTOS ===============");
 		System.out.println("");
 		for (Fatura f : listaFatura) {
@@ -130,7 +130,7 @@ public class FaturaService {
 			System.out.println("");
 		}
 		Scanner scanner = new Scanner(System.in);
-		Utils.pausar(scanner);
+		Views.pausar(scanner);
 	}
 
 	public void pagamentosPorFatura() {
@@ -138,23 +138,23 @@ public class FaturaService {
 		Fatura encontrada = obterFaturaPorMesEmissao();
 
 		if (encontrada == null) {
-			Utils.cxMsg("Não foi encontrado nenhuma fatura com as descrições informadas!");
+			Views.cxMsg("Não foi encontrado nenhuma fatura com as descrições informadas!");
 			return;
 		}
 
-		Utils.limparTela();
+		Views.limparTela();
 		System.out.println("=============== PAGAMENTOS RELACIONADOS À FATURA ===============");
 		System.out.println("");
 		for (Pagamento p : encontrada.getPagamentos()) {
 			System.out.println(p.toString());
 		}
 		Scanner scanner = new Scanner(System.in);
-		Utils.pausar(scanner);
+		Views.pausar(scanner);
 	}
 
 	public void todosOsReembolsos() {
 
-		Utils.limparTela();
+		Views.limparTela();
 		System.out.println("=============== TODOS OS REEMBOLSOS ===============");
 		System.out.println("");
 		for (Fatura f : listaFatura) {
@@ -164,7 +164,7 @@ public class FaturaService {
 			System.out.println("");
 		}
 		Scanner scanner = new Scanner(System.in);
-		Utils.pausar(scanner);
+		Views.pausar(scanner);
 	}
 
 	public void reembolsosPorFatura() {
@@ -172,11 +172,11 @@ public class FaturaService {
 		Fatura encontrada = obterFaturaPorMesEmissao();
 
 		if (encontrada == null) {
-			Utils.cxMsg("Não foi encontrado nenhuma fatura com as descrições informadas!");
+			Views.cxMsg("Não foi encontrado nenhuma fatura com as descrições informadas!");
 			return;
 		}
 
-		Utils.limparTela();
+		Views.limparTela();
 		System.out.println("=============== REEMBOLSOS RELACIONADOS À FATURA ===============");
 		System.out.println("");
 		if (encontrada.getReembolso() != null)
@@ -184,7 +184,7 @@ public class FaturaService {
 		else
 			System.out.println("Não há reembolsos para essa fatura!");
 		Scanner scanner = new Scanner(System.in);
-		Utils.pausar(scanner);
+		Views.pausar(scanner);
 	}
 
 	public ImovelService newImovelRepository() {
