@@ -1,7 +1,7 @@
 package residenciatic18.pratica8.entities;
+
 import java.time.LocalDate;
 import java.text.DecimalFormat;
-
 
 public class Reembolso {
     private double valor;
@@ -27,7 +27,7 @@ public class Reembolso {
     public void setData(LocalDate data) {
         this.data = data;
     }
-    
+
     @Override
     public String toString() {
         DecimalFormat df = new DecimalFormat("#.##");

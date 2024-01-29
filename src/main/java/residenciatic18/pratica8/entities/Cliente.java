@@ -15,7 +15,7 @@ public class Cliente {
     this.imoveis = new ArrayList<>();
   }
 
-  //Não implementei o setImoveis estou na duvida se é necessario.
+  // Não implementei o setImoveis estou na duvida se é necessario.
   public List<Imovel> getImoveis() {
     return this.imoveis;
   }

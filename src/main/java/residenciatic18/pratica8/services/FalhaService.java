@@ -12,7 +12,7 @@ import residenciatic18.pratica8.repositories.FalhaRepository;
 import residenciatic18.pratica8.utils.Utils;
 
 public class FalhaService implements FalhaRepository {
-    
+
     public static List<FalhaDistribuicao> falhasDist = new ArrayList<>();
     public static List<FalhaGeracao> falhasGer = new ArrayList<>();
 
@@ -34,8 +34,8 @@ public class FalhaService implements FalhaRepository {
                 return;
             }
             matriculaImovel = imovel.getMatricula();
-        } 
-        
+        }
+
         System.out.print("\n\tDigite a descrição da falha: ");
         String descricao = Utils.scan.nextLine();
 
@@ -45,11 +45,12 @@ public class FalhaService implements FalhaRepository {
 
         System.out.print("\n\tDigite a data de início: ");
         LocalDate dataInicio = LocalDate.parse(Utils.scan.nextLine(), formatter);
-        
-        FalhaDistribuicao falhaDist = new FalhaDistribuicao(matriculaImovel, descricao, previsaoConclusao, dataInicio, null);
-        
+
+        FalhaDistribuicao falhaDist = new FalhaDistribuicao(matriculaImovel, descricao, previsaoConclusao, dataInicio,
+                null);
+
         ReparoService.cadastrarReparo(falhaDist);
-        
+
         falhasDist.add(falhaDist);
     }
 
@@ -70,7 +71,7 @@ public class FalhaService implements FalhaRepository {
             }
 
             matriculaImovel = imovel.getMatricula();
-        } 
+        }
 
         System.out.print("\n\tDigite a descrição da falha: ");
         String descricao = Utils.scan.nextLine();
@@ -102,7 +103,7 @@ public class FalhaService implements FalhaRepository {
         Utils.pausar(Utils.scan);
     }
 
-    public static void editar(){ 
+    public static void editar() {
         Utils.limparTela();
         System.out.println("\n\t===== EDITAR FALHA =====");
         System.out.print("\n\t===== FALHAS DE DISTRIBUIÇÃO =====");
@@ -142,11 +143,11 @@ public class FalhaService implements FalhaRepository {
             }
         }
         System.out.println("\n\t===== FALHA NÃO ENCONTRADA =====");
-        Utils.pausar(Utils.scan);     
-   
+        Utils.pausar(Utils.scan);
+
     }
 
-    public static FalhaDistribuicao buscarFalhaDistribuicao(){
+    public static FalhaDistribuicao buscarFalhaDistribuicao() {
         Utils.limparTela();
         System.out.println("\n\t===== BUSCAR FALHA DE DISTRIBUIÇÃO =====");
         System.out.print("\n\tDigite o ID da falha que deseja buscar: ");
@@ -164,6 +165,5 @@ public class FalhaService implements FalhaRepository {
         Utils.pausar(Utils.scan);
         return null;
     }
-
 
 }

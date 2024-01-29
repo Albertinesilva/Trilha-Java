@@ -1,8 +1,8 @@
 package residenciatic18.pratica8.entities;
+
 import java.time.LocalDate;
 import java.util.*;
 import java.text.DecimalFormat;
-
 
 public class Pagamento {
     protected double valor;
@@ -28,23 +28,23 @@ public class Pagamento {
     public void setData(LocalDate data) {
         this.data = data;
     }
-    
+
     public static Pagamento obterDadosPagamento() {
-    	
+
         Pagamento pagamento;
-		try {
-			@SuppressWarnings("resource")
-			Scanner scanner = new Scanner(System.in);
+        try {
+            @SuppressWarnings("resource")
+            Scanner scanner = new Scanner(System.in);
 
-			System.out.print("Informe o valor do pagamento: ");
-			double valorPagamento = scanner.nextDouble();
+            System.out.print("Informe o valor do pagamento: ");
+            double valorPagamento = scanner.nextDouble();
 
-			pagamento = new Pagamento(valorPagamento);
-			return pagamento;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+            pagamento = new Pagamento(valorPagamento);
+            return pagamento;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

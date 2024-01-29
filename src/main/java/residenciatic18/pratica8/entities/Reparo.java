@@ -2,7 +2,7 @@ package residenciatic18.pratica8.entities;
 
 import java.time.LocalDate;
 
-  public class Reparo {
+public class Reparo {
   private String descricao;
   private LocalDate previsaoConclusao;
   private LocalDate dataInicio;
@@ -11,7 +11,8 @@ import java.time.LocalDate;
   private Reparo reparoAuxiliar;
   private Falha falha;
 
-  public Reparo(String descricao, LocalDate previsaoConclusao, LocalDate dataInicio, LocalDate dataFim, boolean concluido, Reparo reparoAuxiliar, Falha falha) {
+  public Reparo(String descricao, LocalDate previsaoConclusao, LocalDate dataInicio, LocalDate dataFim,
+      boolean concluido, Reparo reparoAuxiliar, Falha falha) {
     this.descricao = descricao;
     this.previsaoConclusao = previsaoConclusao;
     this.dataInicio = dataInicio;
@@ -21,7 +22,7 @@ import java.time.LocalDate;
     this.falha = falha;
   }
 
-    public Reparo(String descricao, LocalDate previsaoConclusao, LocalDate dataInicio, Falha falha) {
+  public Reparo(String descricao, LocalDate previsaoConclusao, LocalDate dataInicio, Falha falha) {
     this.descricao = descricao;
     this.previsaoConclusao = previsaoConclusao;
     this.dataInicio = dataInicio;
@@ -51,14 +52,14 @@ import java.time.LocalDate;
     return this.concluido;
   }
 
-  public Reparo getReparoAuxiliar(){
+  public Reparo getReparoAuxiliar() {
     return this.reparoAuxiliar;
   }
 
-  public Falha getFalha(){
+  public Falha getFalha() {
     return this.falha;
   }
-  
+
   public void setDescricao(String descricao) {
     this.descricao = descricao;
   }
@@ -79,7 +80,7 @@ import java.time.LocalDate;
     this.concluido = concluido;
   }
 
-  public void setReparoAuxiliar(Reparo reparoAuxiliar){
+  public void setReparoAuxiliar(Reparo reparoAuxiliar) {
     this.reparoAuxiliar = reparoAuxiliar;
   }
 
@@ -133,5 +134,5 @@ import java.time.LocalDate;
   public String toString() {
     return "Reparo [descricao=" + descricao + ", previsaoConclusao=" + previsaoConclusao + ", dataInicio=" + dataInicio
         + ", dataFim=" + dataFim + ", concluido=" + concluido + ", falha=" + falha.toString() + "]";
-      }
+  }
 }
