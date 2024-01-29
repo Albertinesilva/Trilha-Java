@@ -16,7 +16,7 @@ public class ImovelService implements ImovelRepository {
     imoveis.add(imovel);
   }
 
-  public static void cadastrar() {
+  public void cadastrar() {
     Utils.limparTela();
     System.out.println("\n\t===== CADASTRO DE IMÓVEL =====");
 
@@ -35,7 +35,7 @@ public class ImovelService implements ImovelRepository {
     Utils.pausar(Utils.scan);
   }
 
-  public static void listar() {
+  public void listar() {
 
     Utils.limparTela();
     System.out.print("\n\t===== LISTAGEM DE IMÓVEIS =====");
@@ -52,7 +52,7 @@ public class ImovelService implements ImovelRepository {
     Utils.pausar(Utils.scan);
   }
 
-  public static void editar() {
+  public void editar() {
 
     Utils.limparTela();
     System.out.println("\n\t===== EDIÇÃO DE IMOVEL =====");
@@ -120,7 +120,7 @@ public class ImovelService implements ImovelRepository {
     Utils.pausar(Utils.scan);
   }
 
-  public static void excluir() {
+  public void excluir() {
 
     Utils.limparTela();
     System.out.println("\n\t===== EXCLUSÃO DE IMOVEL =====");
@@ -177,7 +177,7 @@ public class ImovelService implements ImovelRepository {
     Utils.pausar(Utils.scan);
   }
 
-  public static void pesquisar() {
+  public void pesquisar() {
 
     Utils.limparTela();
     System.out.print("\n\t===== PESQUISA DE IMÓVEL =====\n");
@@ -232,7 +232,7 @@ public class ImovelService implements ImovelRepository {
     return valor;
   }
 
-  public static Imovel buscaImovel() {
+  public Imovel buscaImovel() {
 
     Utils.limparTela();
     System.out.print("\n\t===== PESQUISA DE IMÓVEL POR MATRÍCULA =====");

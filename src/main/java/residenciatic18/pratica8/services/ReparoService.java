@@ -15,7 +15,9 @@ public class ReparoService implements ReparoRepository {
 
     private static ArrayList<Reparo> listaReparos = new ArrayList<>();
 
-    public static void listarReparosAbertos() {
+    @Override
+    public void listarRaparosAbertos() {
+
         Utils.limparTela();
         List<Reparo> reparosAbertos = new ArrayList<Reparo>();
         reparosAbertos = listaReparos.stream().filter(reparo -> !reparo.getConcluido()).collect(Collectors.toList());
@@ -28,7 +30,9 @@ public class ReparoService implements ReparoRepository {
         Utils.pausar(Utils.scan);
     }
 
-    public static void listarReparos() {
+    @Override
+    public void listarReparos() {
+
         int i = 0;
         Utils.limparTela();
         System.out.println("\n\t=====TODOS OS  REPAROS=====");
@@ -39,7 +43,9 @@ public class ReparoService implements ReparoRepository {
         Utils.pausar(Utils.scan);
     }
 
-    public static void encerraReparo() {
+    @Override
+    public void encerraReparo() {
+
         Utils.limparTela();
         System.out.println("\n\t======ENCERRANDO REPARO=======");
         List<Reparo> reparosAbertos = new ArrayList<Reparo>();
@@ -81,7 +87,9 @@ public class ReparoService implements ReparoRepository {
         Utils.pausar(Utils.scan);
     }
 
-    public static void cadastrarReparo(Falha falha) {
+    @Override
+    public void cadastrarReparo(Falha falha) {
+
         Utils.limparTela();
         System.out.println("\n\t===== CADASTRO DE REPARO=====");
 

@@ -4,20 +4,15 @@ import residenciatic18.pratica8.entities.Cliente;
 
 public interface ClienteRepository {
 
-  public void adcionar(Cliente cliente);
+  void adcionar(Cliente cliente);
 
-  public static void cadastrar() {
-  }
+  void cadastrar();
 
-  public static void listar() {
-  }
+  void listar();
 
-  public static void editar() {
-  }
+  void editar();
 
-  public static void excluir() {
-  }
+  void excluir();
 
-  public static void pesquisar() {
-  }
+  void pesquisar();
 }

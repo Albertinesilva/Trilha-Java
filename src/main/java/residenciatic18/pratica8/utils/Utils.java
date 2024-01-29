@@ -8,6 +8,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import residenciatic18.pratica8.entities.Fatura;
+import residenciatic18.pratica8.repositories.ClienteRepository;
+import residenciatic18.pratica8.repositories.FalhaRepository;
+import residenciatic18.pratica8.repositories.ImovelRepository;
+import residenciatic18.pratica8.repositories.ReparoRepository;
 import residenciatic18.pratica8.services.ClienteService;
 import residenciatic18.pratica8.services.FalhaService;
 import residenciatic18.pratica8.services.FaturaService;
@@ -133,6 +137,7 @@ public class Utils {
   public static void menuCliente() {
 
     int opcao = -1;
+    ClienteRepository clienteRepository = new ClienteService();
 
     do {
 
@@ -140,19 +145,19 @@ public class Utils {
 
       switch (opcao) {
         case 1:
-          ClienteService.cadastrar();
+          clienteRepository.cadastrar();
           break;
         case 2:
-          ClienteService.listar();
+          clienteRepository.listar();
           break;
         case 3:
-          ClienteService.editar();
+          clienteRepository.editar();
           break;
         case 4:
-          ClienteService.excluir();
+          clienteRepository.excluir();
           break;
         case 5:
-          ClienteService.pesquisar();
+          clienteRepository.pesquisar();
           break;
         case 6:
           System.out.println("\n\tRetornando ao menu principal...");
@@ -211,6 +216,7 @@ public class Utils {
   public static void menuImoveis() {
 
     int opcao = -1;
+    ImovelRepository imovelRepository = new ImovelService();
 
     do {
 
@@ -218,19 +224,19 @@ public class Utils {
 
       switch (opcao) {
         case 1:
-          ImovelService.cadastrar();
+          imovelRepository.cadastrar();
           break;
         case 2:
-          ImovelService.listar();
+          imovelRepository.listar();
           break;
         case 3:
-          ImovelService.editar();
+          imovelRepository.editar();
           break;
         case 4:
-          ImovelService.excluir();
+          imovelRepository.excluir();
           break;
         case 5:
-          ImovelService.pesquisar();
+          imovelRepository.pesquisar();
           break;
         case 6:
           System.out.println("\n\tRetornando ao menu principal...");
@@ -287,6 +293,7 @@ public class Utils {
   public static void menuFaturas() {
 
     int opcao = -1;
+    FaturaService faturaService = new FaturaService();
 
     do {
 
@@ -294,13 +301,13 @@ public class Utils {
 
       switch (opcao) {
         case 1:
-          FaturaService.registrarConsumo();
+          faturaService.registrarConsumo();
           break;
         case 2:
-          FaturaService.faturasEmAberto();
+          faturaService.faturasEmAberto();
           break;
         case 3:
-          FaturaService.todasAsFaturas();
+          faturaService.todasAsFaturas();
           break;
         case 4:
           System.out.println("\n\tRetornando ao menu principal...");
@@ -359,6 +366,7 @@ public class Utils {
   public static void menuPagamentos() {
 
     int opcao = -1;
+    FaturaService faturaService = new FaturaService();
 
     do {
 
@@ -366,7 +374,7 @@ public class Utils {
 
       switch (opcao) {
         case 1:
-          Fatura fatura = FaturaService.obterFaturaPorMesEmissao();
+          Fatura fatura = faturaService.obterFaturaPorMesEmissao();
           if (fatura != null)
             fatura.novoPagamento();
           break;
@@ -374,13 +382,13 @@ public class Utils {
           FaturaService.todosOsPagamentos();
           break;
         case 3:
-          FaturaService.pagamentosPorFatura();
+          faturaService.pagamentosPorFatura();
           break;
         case 4:
-          FaturaService.todosOsReembolsos();
+          faturaService.todosOsReembolsos();
           break;
         case 5:
-          FaturaService.reembolsosPorFatura();
+          faturaService.reembolsosPorFatura();
           break;
         case 6:
           System.out.println("\n\tRetornando ao menu principal...");
@@ -470,21 +478,29 @@ public class Utils {
   }
 
   public static void menuTipoFalhas() {
+
     int opcao = -1;
+    FalhaRepository falhaRepository = new FalhaService();
+
     do {
+
       opcao = dispMenuTipoFalhas();
+
       switch (opcao) {
         case 1:
-          FalhaService.cadastrarFalhaDistribuicao();
+          falhaRepository.cadastrarFalhaDistribuicao();
           break;
+
         case 2:
-          FalhaService.cadastrarFalhaGeracao();
+          falhaRepository.cadastrarFalhaGeracao();
           break;
         case 3:
+
           System.out.println("\n\tRetornando ao menu principal...");
           pausar(scan);
           MainEnergiaCoelho();
           break;
+
         case 0:
           System.err.println("\n\tObrigado por utilizar o Energia Coelho, Saindo!...");
           System.exit(0);
@@ -532,21 +548,29 @@ public class Utils {
   }
 
   public static void menuReparos() {
+
     int opcao = -1;
+    ReparoRepository reparoRepository = new ReparoService();
+
     do {
+
       opcao = dispMenuReparos();
+
       switch (opcao) {
         case 1:
-          ReparoService.listarReparosAbertos();
+          reparoRepository.listarRaparosAbertos();
           break;
+
         case 2:
-          ReparoService.encerraReparo();
+          reparoRepository.encerraReparo();
           break;
+
         case 3:
           System.out.println("\n\tRetornando ao menu anterior...");
           pausar(scan);
           menuFalhas();
           break;
+
         default:
           break;
       }
@@ -554,19 +578,28 @@ public class Utils {
   }
 
   public static void menuFalhas() {
+
     int opcao = -1;
+    FalhaRepository falhaRepository = new FalhaService();
+
     do {
+
       opcao = dispMenuFalhas();
+
       switch (opcao) {
+
         case 1:
           menuTipoFalhas();
           break;
+
         case 2:
-          FalhaService.listar();
+          falhaRepository.listar();
           break;
+
         case 3:
-          FalhaService.editar();
+          falhaRepository.editar();
           break;
+
         case 4:
           menuReparos();
           break;

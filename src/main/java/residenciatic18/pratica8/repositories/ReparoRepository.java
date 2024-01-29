@@ -3,16 +3,12 @@ package residenciatic18.pratica8.repositories;
 import residenciatic18.pratica8.entities.Falha;
 
 public interface ReparoRepository {
-    
-    public static void listarReparos() {
-    }
 
-    public static void listarRaparosAbertos() {
-    }
+    void listarReparos();
 
-    public static void encerraReparo() {
-    }
+    void listarRaparosAbertos();
 
-    public static void cadastrarReparo(Falha falha) {
-    }
+    void encerraReparo();
+
+    void cadastrarReparo(Falha falha);
 }

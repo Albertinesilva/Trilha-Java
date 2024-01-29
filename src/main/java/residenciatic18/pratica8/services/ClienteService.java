@@ -9,16 +9,19 @@ import residenciatic18.pratica8.entities.Cliente;
 import residenciatic18.pratica8.repositories.ClienteRepository;
 import residenciatic18.pratica8.utils.Utils;
 
+
 public class ClienteService implements ClienteRepository {
 
   public static List<Cliente> clientes = new ArrayList<>();
 
   @Override
-  public void adcionar(Cliente cliente) {
+  public void adcionar(Cliente cliente) 
+  {
     clientes.add(cliente);
   }
 
-  public static void cadastrar() {
+  public void cadastrar() 
+  {
     Utils.limparTela();
     System.out.println("\n\t===== CADASTRO DE CLIENTE =====");
 
@@ -35,7 +38,8 @@ public class ClienteService implements ClienteRepository {
     Utils.pausar(Utils.scan);
   }
 
-  public static void listar() {
+  public void listar() 
+  {
     Utils.limparTela();
     System.out.print("\n\t===== LISTAGEM DE CLIENTES =====");
 
@@ -51,7 +55,8 @@ public class ClienteService implements ClienteRepository {
     Utils.pausar(Utils.scan);
   }
 
-  public static void editar() {
+  public void editar() 
+  {
 
     Utils.limparTela();
     System.out.println("\n\t===== EDIÇÃO DE CLIENTE =====");
@@ -111,7 +116,8 @@ public class ClienteService implements ClienteRepository {
     return;
   }
 
-  public static void excluir() {
+  public void excluir() 
+  {
 
     Utils.limparTela();
     System.out.println("\n\t===== EXCLUSÃO DE CLIENTE =====");
@@ -162,7 +168,8 @@ public class ClienteService implements ClienteRepository {
     }
   }
 
-  public static void pesquisar() {
+  public void pesquisar() 
+  {
     Utils.limparTela();
     System.out.println("\n\t===== PESQUISA DE CLIENTE =====");
 

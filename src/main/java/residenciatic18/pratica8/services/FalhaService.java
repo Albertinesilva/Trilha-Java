@@ -9,14 +9,18 @@ import residenciatic18.pratica8.entities.FalhaDistribuicao;
 import residenciatic18.pratica8.entities.FalhaGeracao;
 import residenciatic18.pratica8.entities.Imovel;
 import residenciatic18.pratica8.repositories.FalhaRepository;
+import residenciatic18.pratica8.repositories.ImovelRepository;
+import residenciatic18.pratica8.repositories.ReparoRepository;
 import residenciatic18.pratica8.utils.Utils;
 
 public class FalhaService implements FalhaRepository {
 
     public static List<FalhaDistribuicao> falhasDist = new ArrayList<>();
     public static List<FalhaGeracao> falhasGer = new ArrayList<>();
+    ReparoRepository reparoRepository = new ReparoService();
 
-    public static void cadastrarFalhaDistribuicao() {
+    public void cadastrarFalhaDistribuicao() {
+
         Utils.limparTela();
         System.out.println("\n\t===== CADASTRO DE FALHA DE DISTRIBUIÇÃO=====");
 
@@ -27,13 +31,13 @@ public class FalhaService implements FalhaRepository {
             System.out.print("\n\tDigite a matrícula do imóvel: ");
             matriculaImovel = Utils.scan.nextLine();
 
-            Imovel imovel = ImovelService.buscaImovel();
+            // Imovel imovel = ImovelService.buscaImovel();
 
-            if (imovel == null) {
-                Utils.cxMsg("Imóvel não encontrado!");
-                return;
-            }
-            matriculaImovel = imovel.getMatricula();
+            // if (imovel == null) {
+            // Utils.cxMsg("Imóvel não encontrado!");
+            // return;
+            // }
+            // matriculaImovel = imovel.getMatricula();
         }
 
         System.out.print("\n\tDigite a descrição da falha: ");
@@ -49,12 +53,15 @@ public class FalhaService implements FalhaRepository {
         FalhaDistribuicao falhaDist = new FalhaDistribuicao(matriculaImovel, descricao, previsaoConclusao, dataInicio,
                 null);
 
-        ReparoService.cadastrarReparo(falhaDist);
+        reparoRepository.cadastrarReparo(falhaDist);
 
         falhasDist.add(falhaDist);
     }
 
-    public static void cadastrarFalhaGeracao() {
+    public void cadastrarFalhaGeracao() {
+
+        ImovelRepository imovelRepository = new ImovelService();
+
         Utils.limparTela();
         System.out.println("\n\t===== CADASTRO DE FALHA DE GERAÇÃO =====");
 
@@ -63,7 +70,7 @@ public class FalhaService implements FalhaRepository {
         String matriculaImovel = null;
         if (resposta.equalsIgnoreCase("S")) {
             System.out.print("\n\tDigite a matrícula do imóvel: ");
-            Imovel imovel = ImovelService.buscaImovel();
+            Imovel imovel = imovelRepository.buscaImovel();
 
             if (imovel == null) {
                 Utils.cxMsg("Imóvel não encontrado!");
@@ -88,7 +95,8 @@ public class FalhaService implements FalhaRepository {
         falhasGer.add(falhaGer);
     }
 
-    public static void listar() {
+    public void listar() {
+
         Utils.limparTela();
         System.out.println("\n\t===== LISTA DE FALHAS =====");
         System.out.print("\n\t===== FALHAS DE DISTRIBUIÇÃO =====");
@@ -103,7 +111,8 @@ public class FalhaService implements FalhaRepository {
         Utils.pausar(Utils.scan);
     }
 
-    public static void editar() {
+    public void editar() {
+
         Utils.limparTela();
         System.out.println("\n\t===== EDITAR FALHA =====");
         System.out.print("\n\t===== FALHAS DE DISTRIBUIÇÃO =====");
@@ -147,7 +156,8 @@ public class FalhaService implements FalhaRepository {
 
     }
 
-    public static FalhaDistribuicao buscarFalhaDistribuicao() {
+    public FalhaDistribuicao buscarFalhaDistribuicao() {
+
         Utils.limparTela();
         System.out.println("\n\t===== BUSCAR FALHA DE DISTRIBUIÇÃO =====");
         System.out.print("\n\tDigite o ID da falha que deseja buscar: ");

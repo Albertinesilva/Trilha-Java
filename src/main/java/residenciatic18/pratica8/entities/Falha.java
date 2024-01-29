@@ -13,8 +13,7 @@ public class Falha {
   private LocalDate dataInicio;
   private LocalDate dataFim;
 
-  public Falha(String matriculaImovel, String descricao, LocalDate previsaoConclusao, LocalDate dataInicio,
-      LocalDate dataFim) {
+  public Falha(String matriculaImovel, String descricao, LocalDate previsaoConclusao, LocalDate dataInicio, LocalDate dataFim) {
     this.id = proximoID++;
     this.matriculaImovel = matriculaImovel;
     this.descricao = descricao;
@@ -25,7 +24,7 @@ public class Falha {
 
   public int getId() {
     return this.id;
-  }
+  }  
 
   public String getMatriculaImovel() {
     return this.matriculaImovel;
@@ -124,16 +123,15 @@ public class Falha {
     sb.append("\n\tId=").append(id);
 
     if (matriculaImovel != null) {
-      sb.append("\n\tMatricula do Imovel:").append(matriculaImovel);
+        sb.append("\n\tMatricula do Imovel:").append(matriculaImovel);
     } else {
-      sb.append("\n\tMatriculaImovel: não fornecida ");
+        sb.append("\n\tMatriculaImovel: não fornecida ");
     }
 
     sb.append("\n\tDescricao: ").append(descricao)
-        .append("\n\tPrevisao de Conclusao: ")
-        .append(previsaoConclusao != null ? previsaoConclusao.format(dateFormatter) : "não especificada")
-        .append("\n\tData Inicio: ").append(dataInicio.format(dateFormatter))
-        .append("\n\tData Fim: ").append(dataFim != null ? dataFim.format(dateFormatter) : "ainda aberta");
+      .append("\n\tPrevisao de Conclusao: ").append(previsaoConclusao != null ? previsaoConclusao.format(dateFormatter) : "não especificada")
+      .append("\n\tData Inicio: ").append(dataInicio.format(dateFormatter))
+      .append("\n\tData Fim: ").append(dataFim != null ? dataFim.format(dateFormatter) : "ainda aberta");
 
     return sb.toString();
   }

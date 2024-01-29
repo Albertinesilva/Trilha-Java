@@ -6,22 +6,15 @@ public interface ImovelRepository {
 
   public void adcionar(Imovel imovel);
 
-  public static void cadastrar() {
-  }
+  void cadastrar();
 
-  public static void listar() {
-  }
+  void listar();
 
-  public static void editar() {
-  }
+  void editar();
 
-  public static void excluir() {
-  }
+  void excluir();
 
-  public static void pesquisar() {
-  }
+  void pesquisar();
 
-  public static Imovel buscaImovel() {
-    return null;
-  }
+  Imovel buscaImovel();
 }

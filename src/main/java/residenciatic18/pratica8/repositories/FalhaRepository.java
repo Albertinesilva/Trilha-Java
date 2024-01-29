@@ -4,16 +4,13 @@ import residenciatic18.pratica8.entities.FalhaDistribuicao;
 
 public interface FalhaRepository {
 
-  public static void cadastrar() {
-  }
+  void cadastrarFalhaDistribuicao();
 
-  public static void listar() {
-  }
+  void cadastrarFalhaGeracao();
 
-  public static void editar() {
-  }
+  void listar();
 
-  public static FalhaDistribuicao buscarFalhaDistribuicao() {
-    return null;
-  }
+  void editar();
+
+  FalhaDistribuicao buscarFalhaDistribuicao();
 }
