@@ -34,6 +34,7 @@ public class TestPagamento {
 
   @Test
   public void testRegistraPagamentoQuitandoParcialmente() {
+
     Fatura fatura = new Fatura("123", 100, 50);
 
     // Simula um pagamento quitando parcialmente a fatura
@@ -48,6 +49,7 @@ public class TestPagamento {
 
   @Test
   public void testRegistraPagamentoExcedendoValor() {
+
     Fatura fatura = new Fatura("123", 100, 50);
 
     // Simula um pagamento que excede o valor total da fatura
@@ -62,6 +64,7 @@ public class TestPagamento {
 
   @Test
   public void testRegistraPagamentoFaturaQuitada() {
+
     Fatura fatura = new Fatura("123", 100, 50);
 
     // Simula um pagamento quitando totalmente a fatura
@@ -70,9 +73,11 @@ public class TestPagamento {
 
     // Tenta registrar outro pagamento em uma fatura já quitada
     Pagamento pagamento2 = new Pagamento(50);
+
     try {
       fatura.registraPagamento(pagamento2);
       fail("Deveria lançar uma exceção IllegalStateException.");
+      
     } catch (IllegalStateException e) {
       assertEquals("A fatura já está quitada!", e.getMessage());
     }
