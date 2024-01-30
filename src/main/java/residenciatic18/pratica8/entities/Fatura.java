@@ -3,6 +3,7 @@ package residenciatic18.pratica8.entities;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import residenciatic18.pratica8.exceptions.FaturaQuitadaException;
 import residenciatic18.pratica8.views.Views;
 
 import java.text.DecimalFormat;
@@ -107,13 +108,10 @@ public class Fatura {
 
         try {
 
-            System.out.println("Entrou no método registraLeitura()");
-
             if (novaLeitura <= this.ultimaLeitura) {
-                System.out.println("Lançando exceção: A nova leitura deve ser maior que a última leitura.");
                 throw new IllegalArgumentException("A nova leitura deve ser maior que a última leitura.");
             }
-            
+
             // Atualiza a penúltima leitura com o valor atual da última leitura
             this.penultimaLeitura = this.ultimaLeitura;
 
@@ -126,6 +124,37 @@ public class Fatura {
         } catch (IllegalArgumentException e) {
             System.err.println("Erro ao registrar leitura: " + e.getMessage());
         }
+    }
+
+    public void registraPagamento(Pagamento pagamento) {
+
+        if (quitado) {
+            throw new FaturaQuitadaException("A fatura já está quitada e não aceita mais pagamentos.");
+        }
+
+        double valorRestante = getValorPendente();
+
+        if (pagamento.getValor() > valorRestante) {
+            // O pagamento excede o valor pendente, gera reembolso
+            double valorExcedente = pagamento.getValor() - valorRestante;
+            this.reembolso = new Reembolso(valorExcedente);
+            quitado = true;
+
+        } else {
+
+            if (pagamento.getValor() == valorRestante) {
+                // Quita totalmente a fatura
+                quitado = true;
+            }
+        }
+
+        // Adiciona o pagamento à lista
+        this.pagamentos.add(pagamento);
+    }
+
+    public double getValorPendente() {
+        double totalPago = this.pagamentos.stream().mapToDouble(Pagamento::getValor).sum();
+        return Math.max(0, this.valorTotal - totalPago);
     }
 
     @Override

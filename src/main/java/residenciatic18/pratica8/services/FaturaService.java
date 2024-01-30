@@ -53,6 +53,7 @@ public class FaturaService {
 	}
 
 	public void todasAsFaturas() {
+
 		Views.limparTela();
 		System.out.println("=============== TODAS AS FATURAS ===============");
 		System.out.println("");
@@ -164,6 +165,7 @@ public class FaturaService {
 		Views.limparTela();
 		System.out.println("=============== TODOS OS REEMBOLSOS ===============");
 		System.out.println("");
+		
 		for (Fatura f : listaFatura) {
 			System.out.println("===== IMÓVEL DE MATRÍCULA: " + f.getMatriculaImovel() + " =====");
 			System.out.println("");
@@ -186,6 +188,7 @@ public class FaturaService {
 		Views.limparTela();
 		System.out.println("=============== REEMBOLSOS RELACIONADOS À FATURA ===============");
 		System.out.println("");
+
 		if (encontrada.getReembolso() != null)
 			System.out.println(encontrada.getReembolso().toString());
 		else
